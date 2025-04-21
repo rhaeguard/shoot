@@ -180,7 +180,8 @@ const GameContext = struct {
             while (i < size) {
                 try context.allShards.items[i].update();
                 if (context.allShards.items[i].life <= 0) {
-                    _ = context.allShards.swapRemove(i);
+                    var s = context.allShards.swapRemove(i);
+                    s.deinit();
                 } else {
                     i += 1;
                 }
